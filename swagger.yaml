@@ -17,20 +17,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/UserForm'
       responses:
         '200':
           description: user logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/UserAuth'
         '201':
           description: user created and logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/UserAuth'
         '400':
           description: wrong password
           content:
@@ -107,21 +107,35 @@ components:
     Calculation:
       type: object
       properties:
+        id:
+          type: integer
+          example: 62
         task:
           type: string
           example: 2+2
-        solution:
+        result:
           type: number
+          example: 4
 
-    User:
+    UserForm:
       type: object
       properties:
         username:
           type: string
-          example: theUser
+          example: Eric
         password:
           type: string
-          example: '12345'
+          example: 'verysecure123'
+
+    UserAuth:
+      type: object
+      properties:
+        userid:
+          type: integer
+          example: 12
+        jwt:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjEyLCJpYXQiOjE1MTYyMzkwMjJ9.xlCHQxFjOM8yXKTCf6Fu-yKpHB7q2rt2HsfaZ48H78I
 
     Error:
       type: object

@@ -14,25 +14,19 @@
 /**
  * 
  * @export
- * @interface Calculation
+ * @interface UserForm
  */
-export interface Calculation {
+export interface UserForm {
     /**
      * 
      * @type {any}
-     * @memberof Calculation
+     * @memberof UserForm
      */
-    id?: any;
+    username?: any;
     /**
      * 
      * @type {any}
-     * @memberof Calculation
+     * @memberof UserForm
      */
-    task?: any;
-    /**
-     * 
-     * @type {any}
-     * @memberof Calculation
-     */
-    solution?: any;
+    password?: any;
 }

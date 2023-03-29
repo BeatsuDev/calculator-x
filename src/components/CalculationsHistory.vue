@@ -2,8 +2,8 @@
   <div id="calculations-history-wrapper">
     <h2>History</h2>
     <div id="calculations-scroller">
-      <div class="calculation" :key="i" v-for="calculation, i in history.getAll()">
-        {{ calculation.task }} = {{ calculation.result }}
+      <div class="calculation" :key="i" v-for="(calculation, i) in history.getAll()">
+        [{{ calculation.id }}] {{ calculation.task }} = {{ calculation.result }}
       </div>
     </div>
   </div>
