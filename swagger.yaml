@@ -1,0 +1,136 @@
+openapi: 3.1.0
+info:
+  title: Calculator Swagger Specification
+  description: |-
+    A simple calculator API.
+  version: 1.0.0
+
+paths:
+  /user:
+    post:
+      tags:
+        - user
+      summary: Log in or create a user
+      operationId: createUser
+      requestBody:
+        description: User object to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: user logged in
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '201':
+          description: user created and logged in
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: wrong password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /user/logout:
+    get:
+      tags:
+        - user
+      description: Logs out the current logged in user session
+      operationId: logoutUser
+      security:
+        - bearerAuth: []
+      responses:
+        default:
+          description: successful operation
+  /calculation:
+    post:
+      tags:
+        - calculation
+      summary: Create a calculation
+      operationId: createCalculation
+      requestBody:
+        description: Calculation object to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalculationTask'
+      responses:
+        '201':
+          description: calculation created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Calculation'
+        '400':
+          description: invalid calculation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      tags:
+        - calculation
+      summary: Get all calculations for the current user
+      operationId: getCalculations
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: calculations returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Calculation'
+        '403':
+          description: user not logged in
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    CalculationTask:
+      type: object
+      properties:
+        task:
+          type: string
+          example: 2+2
+
+    Calculation:
+      type: object
+      properties:
+        task:
+          type: string
+          example: 2+2
+        solution:
+          type: number
+
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+          example: theUser
+        password:
+          type: string
+          example: '12345'
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
