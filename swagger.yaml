@@ -24,13 +24,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserAuth'
+                $ref: '#/components/schemas/JWTAuthResponse'
         '201':
           description: user created and logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserAuth'
+                $ref: '#/components/schemas/JWTAuthResponse'
         '400':
           description: wrong password
           content:
@@ -99,6 +99,8 @@ components:
   schemas:
     CalculationTask:
       type: object
+      required:
+        - task
       properties:
         task:
           type: string
@@ -106,6 +108,10 @@ components:
 
     Calculation:
       type: object
+      required:
+        - id
+        - task
+        - result
       properties:
         id:
           type: integer
@@ -119,6 +125,9 @@ components:
 
     UserForm:
       type: object
+      required:
+        - username
+        - password
       properties:
         username:
           type: string
@@ -127,8 +136,11 @@ components:
           type: string
           example: 'verysecure123'
 
-    UserAuth:
+    JWTAuthResponse:
       type: object
+      required:
+        - userid
+        - jwt
       properties:
         userid:
           type: integer
@@ -139,6 +151,8 @@ components:
 
     Error:
       type: object
+      required:
+        - message
       properties:
         message:
           type: string
