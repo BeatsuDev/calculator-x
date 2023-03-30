@@ -22,5 +22,5 @@ export interface ModelError {
      * @type {any}
      * @memberof ModelError
      */
-    message?: any;
+    message: any;
 }

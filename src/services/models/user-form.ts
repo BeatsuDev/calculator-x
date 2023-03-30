@@ -22,11 +22,11 @@ export interface UserForm {
      * @type {any}
      * @memberof UserForm
      */
-    username?: any;
+    username: any;
     /**
      * 
      * @type {any}
      * @memberof UserForm
      */
-    password?: any;
+    password: any;
 }

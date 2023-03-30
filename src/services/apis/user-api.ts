@@ -16,7 +16,7 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { UserAuth } from '../models';
+import { JWTAuthResponse } from '../models';
 import { UserForm } from '../models';
 /**
  * UserApi - axios parameter creator
@@ -114,7 +114,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createUser(body?: UserForm, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<UserAuth>>> {
+        async createUser(body?: UserForm, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<JWTAuthResponse>>> {
             const localVarAxiosArgs = await UserApiAxiosParamCreator(configuration).createUser(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -149,7 +149,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createUser(body?: UserForm, options?: AxiosRequestConfig): Promise<AxiosResponse<UserAuth>> {
+        async createUser(body?: UserForm, options?: AxiosRequestConfig): Promise<AxiosResponse<JWTAuthResponse>> {
             return UserApiFp(configuration).createUser(body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -178,7 +178,7 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public async createUser(body?: UserForm, options?: AxiosRequestConfig) : Promise<AxiosResponse<UserAuth>> {
+    public async createUser(body?: UserForm, options?: AxiosRequestConfig) : Promise<AxiosResponse<JWTAuthResponse>> {
         return UserApiFp(this.configuration).createUser(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**

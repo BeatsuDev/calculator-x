@@ -22,17 +22,17 @@ export interface Calculation {
      * @type {any}
      * @memberof Calculation
      */
-    id?: any;
+    id: any;
     /**
      * 
      * @type {any}
      * @memberof Calculation
      */
-    task?: any;
+    task: any;
     /**
      * 
      * @type {any}
      * @memberof Calculation
      */
-    solution?: any;
+    result: any;
 }

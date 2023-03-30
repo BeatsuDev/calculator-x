@@ -14,19 +14,19 @@
 /**
  * 
  * @export
- * @interface UserAuth
+ * @interface JWTAuthResponse
  */
-export interface UserAuth {
+export interface JWTAuthResponse {
     /**
      * 
      * @type {any}
-     * @memberof UserAuth
+     * @memberof JWTAuthResponse
      */
-    userid?: any;
+    userid: any;
     /**
      * 
      * @type {any}
-     * @memberof UserAuth
+     * @memberof JWTAuthResponse
      */
-    jwt?: any;
+    jwt: any;
 }

@@ -22,5 +22,5 @@ export interface CalculationTask {
      * @type {any}
      * @memberof CalculationTask
      */
-    task?: any;
+    task: any;
 }
