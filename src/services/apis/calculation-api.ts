@@ -180,7 +180,7 @@ export class CalculationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CalculationApi
      */
-    public async getCalculations(options?: AxiosRequestConfig) : Promise<AxiosResponse<any>> {
+    public async getCalculations(options?: AxiosRequestConfig) : Promise<AxiosResponse<Calculation[]>> {
         return CalculationApiFp(this.configuration).getCalculations(options).then((request) => request(this.axios, this.basePath));
     }
 }

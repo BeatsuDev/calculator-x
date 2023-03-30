@@ -2,6 +2,9 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 
 import type { Calculation } from "@/services/index";
+import { CalculationApi } from "@/services/index";
+
+const api = new CalculationApi();
 
 export const useCalculationHistoryStore = defineStore("calculator-history", () => {
   const history = ref<Calculation[]>([]);
@@ -18,5 +21,11 @@ export const useCalculationHistoryStore = defineStore("calculator-history", () =
     return history.value;
   }
 
-  return { add, clear, getAll };
+  async function fetchAll() {
+    const calculations = await api.getCalculations();
+    history.value = calculations.data;
+    return getAll();
+  }
+
+  return { add, clear, getAll, fetchAll };
 });
